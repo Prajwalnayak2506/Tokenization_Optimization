@@ -29,25 +29,57 @@ print("The top three most common pairs with their counts are as follows", pairs.
 # Total: 79 tokens
 # When you merge a pair into one symbol, every place that pair occurs shrinks by one token. So the pair count is exactly how many tokens that merge saves. Merging ('e','s') saves 9, taking the total from 79 to 70.
 
-def merge_pair(vocab, pair):
+def merge_symbols(symbols, pair):
+    # merge one pair inside a single word
     a, b = pair
-    new_vocab = {}
-    for symbols, count in vocab.items():
-        new_symbols = []
-        i = 0
-        while i < len(symbols):
-            # if this symbol and the next one form the pair, join them
-            if i < len(symbols) - 1 and symbols[i] == a and symbols[i + 1] == b:
-                new_symbols.append(a + b)
-                i += 2          # skip both, they're now one symbol
-            else:
-                new_symbols.append(symbols[i])
-                i += 1
-        new_vocab[tuple(new_symbols)] = count
-    return new_vocab
+    new_symbols = []
+    i = 0
+    while i < len(symbols):
+        if i < len(symbols) - 1 and symbols[i] == a and symbols[i + 1] == b:
+            new_symbols.append(a + b)
+            i += 2
+        else:
+            new_symbols.append(symbols[i])
+            i += 1
+    return tuple(new_symbols)
+
+def merge_pair(vocab, pair):
+    # merge one pair in every word of the vocabulary
+    return {merge_symbols(symbols, pair): count for symbols, count in vocab.items()}
 
 best = pairs.most_common(1)[0][0]    # the winning pair: ('e', 's')
 print("Merging:", best)
 vocab = merge_pair(vocab, best)
 print(vocab)
 print(total_symbols(vocab))
+
+def train(corpus, num_merges):
+    vocab = get_vocab(corpus)
+    merges = []
+    for step in range(num_merges):
+        pairs = get_pair_counts(vocab)
+        if not pairs:          # every word is one token, nothing left to merge
+            break
+        best = pairs.most_common(1)[0][0]
+        print("The best is ",best," with number ",pairs[best],". The pairs as for now are : ",pairs)
+        vocab = merge_pair(vocab, best)
+        merges.append(best)
+        print(f"Merge {step + 1}: {best} -> total symbols {total_symbols(vocab)}")
+    return merges, vocab
+number_of_merges = 4
+merges, vocab = train(corpus, number_of_merges)
+print("Learned merges:", merges)
+print("Final words:", vocab)
+
+def encode_word(word, merges):
+    symbols = tuple(word)
+    for pair in merges:           # replay merges in learned order
+        symbols = merge_symbols(symbols, pair)
+    return symbols
+
+def decode(tokens):
+    return "".join(tokens)
+
+for w in ["lowest", "slow", "newer", "widest"]:
+    tokens = encode_word(w, merges)
+    print(w, "->", tokens, "->", decode(tokens))
