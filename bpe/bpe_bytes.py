@@ -1,10 +1,24 @@
+word = "low"
+raw = word.encode("utf-8")
+print(raw) #b'low' is a bytes object. It’s like a string, but made of bytes instead of characters. The b in front is Python saying “this is bytes”. For English letters, Python shows them as letters to be readable.
+print(list(raw))
+symbols = tuple(bytes([b]) for b in raw)
+print(symbols)
+# Why bytes([b]) instead of just the numbers?
+print(224 + 164)
+print(bytes([224]) + bytes([164]))
+# Numbers add up: 224 + 164 = 388. That’s useless; we lose the two bytes.
+# Bytes objects glue together, like strings do. b'\xe0' + b'\xa4' gives b'\xe0\xa4', both bytes side by side.
+print(tuple(bytes([b]) for b in "न".encode("utf-8")))
+print("=========================================================================================================================================================================")
 from collections import Counter
 
-corpus = {"low": 5, "lower": 2, "newest": 6, "widest": 3}
+def to_bytes(word):
+    # "low" -> (b'l', b'o', b'w')
+    return tuple(bytes([b]) for b in word.encode("utf-8"))
 
 def get_vocab(corpus):
-    # each word becomes a tuple of characters: "low" -> ('l', 'o', 'w')
-    return {tuple(word): count for word, count in corpus.items()}
+    return {to_bytes(word): count for word, count in corpus.items()}
 
 def get_pair_counts(vocab):
     pairs = Counter()
@@ -12,25 +26,11 @@ def get_pair_counts(vocab):
         for a, b in zip(symbols, symbols[1:]):
             pairs[(a, b)] += count
     return pairs
+
 def total_symbols(vocab):
     return sum(len(symbols) * count for symbols, count in vocab.items())
-vocab = get_vocab(corpus)
-print("The total number of single characters with repitition is ",total_symbols(vocab))   # 79
-print("The vocabulary is ",vocab)
-pairs = get_pair_counts(vocab)
-print("The top three most common pairs with their counts are as follows", pairs.most_common(3))
-# BPE’s goal is to represent the corpus in as few tokens as possible.
-# Right now every character is a token, so the total is:
-
-# low: 3 symbols × 5 = 15
-# lower: 5 × 2 = 10
-# newest: 6 × 6 = 36
-# widest: 6 × 3 = 18
-# Total: 79 tokens
-# When you merge a pair into one symbol, every place that pair occurs shrinks by one token. So the pair count is exactly how many tokens that merge saves. Merging ('e','s') saves 9, taking the total from 79 to 70.
 
 def merge_symbols(symbols, pair):
-    # merge one pair inside a single word
     a, b = pair
     new_symbols = []
     i = 0
@@ -44,52 +44,53 @@ def merge_symbols(symbols, pair):
     return tuple(new_symbols)
 
 def merge_pair(vocab, pair):
-    # merge one pair in every word of the vocabulary
     return {merge_symbols(symbols, pair): count for symbols, count in vocab.items()}
-
-best = pairs.most_common(1)[0][0]    # the winning pair: ('e', 's')
-print("Merging:", best)
-vocab = merge_pair(vocab, best)
-print(vocab)
-print(total_symbols(vocab))
 
 def train(corpus, num_merges):
     vocab = get_vocab(corpus)
     merges = []
+    print("Start: total symbols", total_symbols(vocab))
     for step in range(num_merges):
         pairs = get_pair_counts(vocab)
-        if not pairs:          # every word is one token, nothing left to merge
+        if not pairs:
             break
         best = pairs.most_common(1)[0][0]
-        print("The best is ",best," with number ",pairs[best],". The pairs as for now are : ",pairs)
         vocab = merge_pair(vocab, best)
         merges.append(best)
         print(f"Merge {step + 1}: {best} -> total symbols {total_symbols(vocab)}")
     return merges, vocab
-number_of_merges = 4
-merges, vocab = train(corpus, number_of_merges)
-print("Learned merges:", merges)
-print("Final words:", vocab)
+english = {"low": 5, "lower": 2, "newest": 6, "widest": 3}
+merges, vocab = train(english, 4)
+
+def show(token):
+    try:
+        return token.decode("utf-8")
+    except UnicodeDecodeError:
+        return "fragment"
+
+hindi = {"नमस्ते": 5, "नमक": 3, "कमल": 2}
+merges, vocab = train(hindi, 6)
+for a, b in merges:
+    print(list(a), "+", list(b), "->", list(a + b), show(a + b))
+
 
 def encode_word(word, merges):
-    symbols = tuple(word)
-    for pair in merges:           # replay merges in learned order
+    symbols = to_bytes(word)              # was tuple(word)
+    for pair in merges:                   # replay merges in learned order
         symbols = merge_symbols(symbols, pair)
     return symbols
 
 def decode(tokens):
-    return "".join(tokens)
+    return b"".join(tokens).decode("utf-8")
 
-for w in ["lowest", "slow", "newer", "widest"]:
+for w in ["नमस्ते", "नमक", "कमल", "मन", "नमन", "hello"]:
     tokens = encode_word(w, merges)
-    print(w, "->", tokens, "->", decode(tokens))
+    print(w, "->", [list(t) for t in tokens])
+    print("   readable?", [show(t) for t in tokens])
+    print("   decoded:", decode(tokens), "| round trip OK:", decode(tokens) == w)
 
-
-# version 2: token IDs and the round-trip test
-# Why IDs? Your tokenizer outputs strings like ('low', 'est'), but a model only takes numbers. So we give every token in the vocabulary a fixed number, like a dictionary that maps each token to a page number.
-def build_vocab(corpus, merges):
-    alphabet = sorted(set("".join(corpus)))          # the base characters, Σ
-    tokens = alphabet + [a + b for a, b in merges]   # plus one new token per merge
+def build_vocab(merges):
+    tokens = [bytes([i]) for i in range(256)] + [a + b for a, b in merges]
     token_to_id = {tok: i for i, tok in enumerate(tokens)}
     id_to_token = {i: tok for tok, i in token_to_id.items()}
     return token_to_id, id_to_token
@@ -98,12 +99,26 @@ def encode(word, merges, token_to_id):
     return [token_to_id[t] for t in encode_word(word, merges)]
 
 def decode_ids(ids, id_to_token):
-    return "".join(id_to_token[i] for i in ids)
+    return b"".join(id_to_token[i] for i in ids).decode("utf-8")
 
-token_to_id, id_to_token = build_vocab(corpus, merges)
-print(token_to_id)
+token_to_id, id_to_token = build_vocab(merges)
+print("vocabulary size:", len(token_to_id))
+for i in range(256, len(token_to_id)):
+    print(i, list(id_to_token[i]), show(id_to_token[i]))
 
-for w in ["lowest", "slow", "newer", "widest","zebra"]:
+for w in ["नमस्ते", "नमक", "मन", "zebra", "hello", "🙂"]:
     ids = encode(w, merges, token_to_id)
-    back = decode_ids(ids, id_to_token)
-    print(w, "->", ids, "->", back, "| round trip OK:", back == w)
+    print(w, "->", ids, "| round trip OK:", decode_ids(ids, id_to_token) == w)
+
+# But there’s one important catch: “can encode any language” is not the same as “encodes every language equally well.”
+print("========================================================================================")
+english = {"low": 5, "lower": 2, "newest": 6, "widest": 3}
+hindi = {"नमस्ते": 5, "नमक": 3, "कमल": 2}
+mixed = {**english, **hindi}        # both corpora in one dictionary
+
+for name, corpus, k in [("English only", english, 4),
+                        ("Hindi only", hindi, 6),
+                        ("Mixed", mixed, 6)]:
+    m, _ = train(corpus, k)
+    print(name, "| hello:", len(encode_word("hello", m)),
+          "tokens | नमस्ते:", len(encode_word("नमस्ते", m)), "tokens")
