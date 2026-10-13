@@ -83,3 +83,27 @@ def decode(tokens):
 for w in ["lowest", "slow", "newer", "widest"]:
     tokens = encode_word(w, merges)
     print(w, "->", tokens, "->", decode(tokens))
+
+
+# version 2: token IDs and the round-trip test
+# Why IDs? Your tokenizer outputs strings like ('low', 'est'), but a model only takes numbers. So we give every token in the vocabulary a fixed number, like a dictionary that maps each token to a page number.
+def build_vocab(corpus, merges):
+    alphabet = sorted(set("".join(corpus)))          # the base characters, Σ
+    tokens = alphabet + [a + b for a, b in merges]   # plus one new token per merge
+    token_to_id = {tok: i for i, tok in enumerate(tokens)}
+    id_to_token = {i: tok for tok, i in token_to_id.items()}
+    return token_to_id, id_to_token
+
+def encode(word, merges, token_to_id):
+    return [token_to_id[t] for t in encode_word(word, merges)]
+
+def decode_ids(ids, id_to_token):
+    return "".join(id_to_token[i] for i in ids)
+
+token_to_id, id_to_token = build_vocab(corpus, merges)
+print(token_to_id)
+
+for w in ["lowest", "slow", "newer", "widest","zebra"]:
+    ids = encode(w, merges, token_to_id)
+    back = decode_ids(ids, id_to_token)
+    print(w, "->", ids, "->", back, "| round trip OK:", back == w)
