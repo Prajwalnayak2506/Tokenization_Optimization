@@ -1,6 +1,7 @@
 # Multi-Objective Tokenization for Indian Languages
  
 Course project for **CS 769: Optimization in Machine Learning**
+
 Prajwal Nayak (22B4246)
  
 ## Overview
