@@ -48,15 +48,11 @@ def train(corpus, num_merges):
         print(f"Merge {step + 1}: {best} -> total symbols {total_symbols(vocab)}")
     return merges, vocab
 
-
 def show(token):
     try:
         return token.decode("utf-8")
     except UnicodeDecodeError:
         return "fragment"
-
-
-
 
 def encode_word(word, merges):
     symbols = to_bytes(word)              # was tuple(word)
@@ -66,7 +62,6 @@ def encode_word(word, merges):
 
 def decode(tokens):
     return b"".join(tokens).decode("utf-8")
-
 
 def build_vocab(merges):
     tokens = [bytes([i]) for i in range(256)] + [a + b for a, b in merges]
@@ -79,9 +74,6 @@ def encode(word, merges, token_to_id):
 
 def decode_ids(ids, id_to_token):
     return b"".join(id_to_token[i] for i in ids).decode("utf-8")
-
-
-
 
 if __name__ == "__main__":
     # all your test code goes here, indented by 4 spaces
