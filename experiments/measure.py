@@ -84,7 +84,3 @@ if __name__ == "__main__" :
     print("Real tokenizers are trained on data that is overwhelmingly English. So the unfairness doesn’t come from BPE alone; it comes from BPE plus imbalanced data. And the amount of each language in the training data is a knob we can turn.")
     print("The next experiment: turn the knob and trace a trade-off curve. Keep all the English training sentences, and include only a fraction of the Hindi and Kannada ones: 10%, 25%, 50%. For each mix, measure English tokens and Hindi/Kannada parity. You already have the two ends: 0% (English only) and 100% (mixed).")
     print("Plot English tokens against parity for these five points, and you get a trade-off curve between compression for English and fairness for Indian languages. That’s the first real picture of the multi-objective problem, and it would be a strong slide for tomorrow.")
-
-
-
-
