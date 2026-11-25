@@ -1,0 +1,85 @@
+[
+  {
+    "c": 0,
+    "frac": 0.05,
+    "tokens": {
+      "English": 69966,
+      "Hindi": 148233,
+      "Kannada": 159988
+    },
+    "parity_hi": 2.12,
+    "parity_kn": 2.29,
+    "merges": {
+      "Kannada": 18,
+      "Hindi": 17,
+      "English": 165
+    }
+  },
+  {
+    "c": 2,
+    "frac": 0.05,
+    "tokens": {
+      "English": 75179,
+      "Hindi": 124397,
+      "Kannada": 122380
+    },
+    "parity_hi": 1.65,
+    "parity_kn": 1.63,
+    "merges": {
+      "Kannada": 50,
+      "Hindi": 35,
+      "English": 114,
+      "unclear": 1
+    }
+  },
+  {
+    "c": 5,
+    "frac": 0.05,
+    "tokens": {
+      "English": 81988,
+      "Hindi": 111850,
+      "Kannada": 109347
+    },
+    "parity_hi": 1.36,
+    "parity_kn": 1.33,
+    "merges": {
+      "Kannada": 72,
+      "Hindi": 52,
+      "English": 75,
+      "unclear": 1
+    }
+  },
+  {
+    "c": 10,
+    "frac": 0.05,
+    "tokens": {
+      "English": 90189,
+      "Hindi": 103770,
+      "Kannada": 102045
+    },
+    "parity_hi": 1.15,
+    "parity_kn": 1.13,
+    "merges": {
+      "Kannada": 89,
+      "Hindi": 66,
+      "English": 44,
+      "unclear": 1
+    }
+  },
+  {
+    "c": 30,
+    "frac": 0.05,
+    "tokens": {
+      "English": 132047,
+      "Hindi": 96639,
+      "Kannada": 94286
+    },
+    "parity_hi": 0.73,
+    "parity_kn": 0.71,
+    "merges": {
+      "Kannada": 114,
+      "Hindi": 85,
+      "unclear": 1
+    }
+  }
+]

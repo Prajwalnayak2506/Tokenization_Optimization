@@ -1,0 +1,468 @@
+[
+  {
+    "mode": "current",
+    "frac": 0.05,
+    "c": null,
+    "tokens": {
+      "English": 89620,
+      "Hindi": 101384,
+      "Kannada": 104341
+    },
+    "F_sym": 1.164,
+    "merges": {
+      "Hindi": 71,
+      "Kannada": 82,
+      "English": 46,
+      "unclear": 1
+    },
+    "seconds": 7
+  },
+  {
+    "mode": "start",
+    "frac": 0.05,
+    "c": null,
+    "tokens": {
+      "English": 81497,
+      "Hindi": 106406,
+      "Kannada": 113904
+    },
+    "F_sym": 1.398,
+    "merges": {
+      "Hindi": 60,
+      "Kannada": 63,
+      "English": 76,
+      "unclear": 1
+    },
+    "seconds": 7
+  },
+  {
+    "mode": "sym",
+    "frac": 0.05,
+    "c": 0,
+    "tokens": {
+      "English": 69966,
+      "Hindi": 148233,
+      "Kannada": 159988
+    },
+    "F_sym": 2.287,
+    "merges": {
+      "Kannada": 18,
+      "Hindi": 17,
+      "English": 165
+    },
+    "seconds": 9
+  },
+  {
+    "mode": "sym",
+    "frac": 0.05,
+    "c": 1,
+    "tokens": {
+      "English": 72780,
+      "Hindi": 135089,
+      "Kannada": 133659
+    },
+    "F_sym": 1.856,
+    "merges": {
+      "Kannada": 38,
+      "Hindi": 25,
+      "English": 136,
+      "unclear": 1
+    },
+    "seconds": 9
+  },
+  {
+    "mode": "sym",
+    "frac": 0.05,
+    "c": 2,
+    "tokens": {
+      "English": 75179,
+      "Hindi": 124397,
+      "Kannada": 122380
+    },
+    "F_sym": 1.655,
+    "merges": {
+      "Kannada": 50,
+      "Hindi": 35,
+      "English": 114,
+      "unclear": 1
+    },
+    "seconds": 10
+  },
+  {
+    "mode": "sym",
+    "frac": 0.05,
+    "c": 3,
+    "tokens": {
+      "English": 77887,
+      "Hindi": 118383,
+      "Kannada": 115903
+    },
+    "F_sym": 1.52,
+    "merges": {
+      "Kannada": 60,
+      "Hindi": 43,
+      "English": 96,
+      "unclear": 1
+    },
+    "seconds": 10
+  },
+  {
+    "mode": "sym",
+    "frac": 0.05,
+    "c": 5,
+    "tokens": {
+      "English": 81988,
+      "Hindi": 111850,
+      "Kannada": 109347
+    },
+    "F_sym": 1.364,
+    "merges": {
+      "Kannada": 72,
+      "Hindi": 52,
+      "English": 75,
+      "unclear": 1
+    },
+    "seconds": 8
+  },
+  {
+    "mode": "sym",
+    "frac": 0.05,
+    "c": 7,
+    "tokens": {
+      "English": 85590,
+      "Hindi": 108376,
+      "Kannada": 105158
+    },
+    "F_sym": 1.266,
+    "merges": {
+      "Kannada": 81,
+      "Hindi": 58,
+      "English": 60,
+      "unclear": 1
+    },
+    "seconds": 8
+  },
+  {
+    "mode": "sym",
+    "frac": 0.05,
+    "c": 10,
+    "tokens": {
+      "English": 90189,
+      "Hindi": 103770,
+      "Kannada": 102045
+    },
+    "F_sym": 1.151,
+    "merges": {
+      "Kannada": 89,
+      "Hindi": 66,
+      "English": 44,
+      "unclear": 1
+    },
+    "seconds": 9
+  },
+  {
+    "mode": "sym",
+    "frac": 0.05,
+    "c": 15,
+    "tokens": {
+      "English": 100235,
+      "Hindi": 100905,
+      "Kannada": 99332
+    },
+    "F_sym": 1.016,
+    "merges": {
+      "Kannada": 98,
+      "Hindi": 73,
+      "English": 28,
+      "unclear": 1
+    },
+    "seconds": 9
+  },
+  {
+    "mode": "sym",
+    "frac": 0.05,
+    "c": 20,
+    "tokens": {
+      "English": 101504,
+      "Hindi": 100552,
+      "Kannada": 98123
+    },
+    "F_sym": 1.034,
+    "merges": {
+      "Kannada": 101,
+      "Hindi": 74,
+      "English": 24,
+      "unclear": 1
+    },
+    "seconds": 10
+  },
+  {
+    "mode": "sym",
+    "frac": 0.05,
+    "c": 30,
+    "tokens": {
+      "English": 101504,
+      "Hindi": 100552,
+      "Kannada": 98123
+    },
+    "F_sym": 1.034,
+    "merges": {
+      "Kannada": 101,
+      "Hindi": 74,
+      "English": 24,
+      "unclear": 1
+    },
+    "seconds": 9
+  },
+  {
+    "mode": "sym",
+    "frac": 0.05,
+    "c": 50,
+    "tokens": {
+      "English": 101855,
+      "Hindi": 100510,
+      "Kannada": 98316
+    },
+    "F_sym": 1.036,
+    "merges": {
+      "Kannada": 101,
+      "Hindi": 75,
+      "English": 24
+    },
+    "seconds": 9
+  },
+  {
+    "mode": "current",
+    "frac": 0.1,
+    "c": null,
+    "tokens": {
+      "English": 90106,
+      "Hindi": 101396,
+      "Kannada": 104120
+    },
+    "F_sym": 1.156,
+    "merges": {
+      "Hindi": 72,
+      "Kannada": 83,
+      "English": 44,
+      "unclear": 1
+    },
+    "seconds": 9
+  },
+  {
+    "mode": "start",
+    "frac": 0.1,
+    "c": null,
+    "tokens": {
+      "English": 81786,
+      "Hindi": 105604,
+      "Kannada": 113659
+    },
+    "F_sym": 1.39,
+    "merges": {
+      "Hindi": 62,
+      "Kannada": 63,
+      "English": 74,
+      "unclear": 1
+    },
+    "seconds": 9
+  },
+  {
+    "mode": "sym",
+    "frac": 0.1,
+    "c": 0,
+    "tokens": {
+      "English": 72884,
+      "Hindi": 127870,
+      "Kannada": 137000
+    },
+    "F_sym": 1.88,
+    "merges": {
+      "Kannada": 34,
+      "Hindi": 31,
+      "English": 134,
+      "unclear": 1
+    },
+    "seconds": 12
+  },
+  {
+    "mode": "sym",
+    "frac": 0.1,
+    "c": 1,
+    "tokens": {
+      "English": 78181,
+      "Hindi": 115784,
+      "Kannada": 115636
+    },
+    "F_sym": 1.481,
+    "merges": {
+      "Kannada": 59,
+      "Hindi": 46,
+      "English": 94,
+      "unclear": 1
+    },
+    "seconds": 11
+  },
+  {
+    "mode": "sym",
+    "frac": 0.1,
+    "c": 2,
+    "tokens": {
+      "English": 82190,
+      "Hindi": 109335,
+      "Kannada": 109807
+    },
+    "F_sym": 1.336,
+    "merges": {
+      "Kannada": 71,
+      "Hindi": 55,
+      "English": 73,
+      "unclear": 1
+    },
+    "seconds": 11
+  },
+  {
+    "mode": "sym",
+    "frac": 0.1,
+    "c": 3,
+    "tokens": {
+      "English": 86395,
+      "Hindi": 105078,
+      "Kannada": 105073
+    },
+    "F_sym": 1.216,
+    "merges": {
+      "Kannada": 81,
+      "Hindi": 63,
+      "English": 55,
+      "unclear": 1
+    },
+    "seconds": 11
+  },
+  {
+    "mode": "sym",
+    "frac": 0.1,
+    "c": 5,
+    "tokens": {
+      "English": 94090,
+      "Hindi": 101485,
+      "Kannada": 100744
+    },
+    "F_sym": 1.079,
+    "merges": {
+      "Kannada": 91,
+      "Hindi": 72,
+      "English": 36,
+      "unclear": 1
+    },
+    "seconds": 12
+  },
+  {
+    "mode": "sym",
+    "frac": 0.1,
+    "c": 7,
+    "tokens": {
+      "English": 98510,
+      "Hindi": 100198,
+      "Kannada": 99291
+    },
+    "F_sym": 1.017,
+    "merges": {
+      "Kannada": 95,
+      "Hindi": 76,
+      "English": 28,
+      "unclear": 1
+    },
+    "seconds": 12
+  },
+  {
+    "mode": "sym",
+    "frac": 0.1,
+    "c": 10,
+    "tokens": {
+      "English": 98510,
+      "Hindi": 100198,
+      "Kannada": 99291
+    },
+    "F_sym": 1.017,
+    "merges": {
+      "Kannada": 95,
+      "Hindi": 76,
+      "English": 28,
+      "unclear": 1
+    },
+    "seconds": 13
+  },
+  {
+    "mode": "sym",
+    "frac": 0.1,
+    "c": 15,
+    "tokens": {
+      "English": 99184,
+      "Hindi": 100196,
+      "Kannada": 99049
+    },
+    "F_sym": 1.012,
+    "merges": {
+      "Kannada": 96,
+      "Hindi": 76,
+      "English": 27,
+      "unclear": 1
+    },
+    "seconds": 14
+  },
+  {
+    "mode": "sym",
+    "frac": 0.1,
+    "c": 20,
+    "tokens": {
+      "English": 99215,
+      "Hindi": 100198,
+      "Kannada": 99054
+    },
+    "F_sym": 1.012,
+    "merges": {
+      "Kannada": 96,
+      "Hindi": 76,
+      "English": 27,
+      "unclear": 1
+    },
+    "seconds": 12
+  },
+  {
+    "mode": "sym",
+    "frac": 0.1,
+    "c": 30,
+    "tokens": {
+      "English": 99269,
+      "Hindi": 100198,
+      "Kannada": 99055
+    },
+    "F_sym": 1.012,
+    "merges": {
+      "Kannada": 96,
+      "Hindi": 76,
+      "English": 27,
+      "unclear": 1
+    },
+    "seconds": 12
+  },
+  {
+    "mode": "sym",
+    "frac": 0.1,
+    "c": 50,
+    "tokens": {
+      "English": 99269,
+      "Hindi": 100198,
+      "Kannada": 99055
+    },
+    "F_sym": 1.012,
+    "merges": {
+      "Kannada": 96,
+      "Hindi": 76,
+      "English": 27,
+      "unclear": 1
+    },
+    "seconds": 13
+  }
+]
