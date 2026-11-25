@@ -187,6 +187,11 @@ a2.set_ylim(lo - pad, hi + pad)
 a2.set_xlabel("fairness weight c"); a2.set_ylabel("total fertility")
 a2.set_title("Total fertility as c grows")
 a2.legend(fontsize=8); a2.grid(alpha=0.3)
+fig.tight_layout(); fig.savefig(os.path.join(RES, "fig6_total_fertility.png"), dpi=200)
+
+print("\ntotal fertility (all tokens / all words):")
+for name, r in methods:
+    print(f"  {name.replace(chr(10), ', '):28s} {total_fertility(r['tokens']):.2f}")
 print("saved figures in", RES)
 
 
